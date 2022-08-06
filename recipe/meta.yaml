@@ -18,6 +18,8 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - pip
+    - setuptools
+    - wheel
     - python
     - leveldb
   run:
