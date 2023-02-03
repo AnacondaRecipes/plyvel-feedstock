@@ -35,10 +35,16 @@ test:
     - pip check
 
 about:
-  home: https://pypi.org/project/plyvel/
+  home: https://github.com/wbolster/plyvel
+  dev_url: https://github.com/wbolster/plyvel
+  doc_url: https://plyvel.readthedocs.io/
   summary: Plyvel, a fast and feature-rich Python interface to LevelDB
+  description: |
+    Plyvel is a fast and feature-rich Python interface to LevelDB.
+    Plyvel has a rich feature set, high performance, and a friendly Pythonic API.
   license: BSD-3-Clause
   license_file: LICENSE.rst
+  license_family: BSD
 
 extra:
   recipe-maintainers:
