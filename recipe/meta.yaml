@@ -25,7 +25,7 @@ requirements:
     - leveldb 1.23
   run:
     - python
-    - leveldb >=1.20,<1.21.0a0
+    - leveldb
 
 test:
   requires:
