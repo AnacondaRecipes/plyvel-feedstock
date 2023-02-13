@@ -1,5 +1,5 @@
 {% set name = "plyvel" %}
-{% set version = "1.4.0" %}
+{% set version = "1.5.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4ea98bea04ebf0f44747bacdfafefc8827787106fbb787f0aedc46482b2dfd53
+  sha256: cd918e0b31690abcd3d202a8742caf951ab2fe1573de7af71c38456847f9202b
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
-  # trigger: 0
-  ignore_run_exports:  # [win]
-    - leveldb          # [win]
+  skip: True  # [py<36]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   build:
@@ -24,20 +22,30 @@ requirements:
     - setuptools
     - wheel
     - python
-    - leveldb
+    - leveldb 1.23
   run:
     - python
-    - leveldb
+    - leveldb >=1.23,<1.24.0a0
 
 test:
+  requires:
+    - pip
   imports:
     - plyvel
+  commands:
+    - pip check
 
 about:
-  home: https://pypi.org/project/plyvel/
+  home: https://github.com/wbolster/plyvel
+  dev_url: https://github.com/wbolster/plyvel
+  doc_url: https://plyvel.readthedocs.io/
   summary: Plyvel, a fast and feature-rich Python interface to LevelDB
+  description: |
+    Plyvel is a fast and feature-rich Python interface to LevelDB.
+    Plyvel has a rich feature set, high performance, and a friendly Pythonic API.
   license: BSD-3-Clause
   license_file: LICENSE.rst
+  license_family: BSD
 
 extra:
   recipe-maintainers:
