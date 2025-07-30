@@ -28,6 +28,7 @@ requirements:
     - wheel
     - python
     - leveldb {{ leveldb }}
+    - snappy ==1.1.9  # [win]
   run:
     - python
     - {{ pin_compatible('leveldb', max_pin='x.x') }}
