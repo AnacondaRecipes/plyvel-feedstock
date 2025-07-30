@@ -12,12 +12,15 @@ source:
 build:
   number: 0
   skip: True  # [py<36]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script:
+    - cython --cplus --fast-fail --annotate plyvel/_plyvel.pyx -vv
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
     - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
+    - cython
   host:
     - pip
     - setuptools
