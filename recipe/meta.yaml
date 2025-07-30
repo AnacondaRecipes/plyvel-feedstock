@@ -38,7 +38,9 @@ test:
     - plyvel
   commands:
     - pip check
-    - pytest -vv test
+    - pytest -vv test                                   # [not linux]
+    # This test expects no permissions to /tmp dir, but linux instances run under root
+    - pytest -vv test -k "not test_open_read_only_dir"  # [linux]
 
 about:
   home: https://github.com/wbolster/plyvel
