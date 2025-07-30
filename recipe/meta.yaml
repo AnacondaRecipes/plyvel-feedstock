@@ -11,6 +11,7 @@ source:
 
 build:
   number: 0
+  # 3.12 support introduced in 1.5.1: https://github.com/wbolster/plyvel/blob/main/NEWS.rst#plyvel-151
   skip: True  # [py<36 or py>312]
   script:
     - cython --cplus --fast-fail --annotate plyvel/_plyvel.pyx -vv
