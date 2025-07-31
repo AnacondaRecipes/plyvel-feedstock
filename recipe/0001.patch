@@ -1,0 +1,27 @@
+diff --git a/setup.py b/setup.py
+index 68b7046..d681e54 100644
+--- a/setup.py
++++ b/setup.py
+@@ -15,16 +15,22 @@ def get_file_contents(filename):
+ 
+ 
+ extra_compile_args = ['-Wall', '-g', '-x', 'c++', '-std=c++11']
++extra_link_args = []
+ 
+ if platform.system() == 'Darwin':
+     extra_compile_args += ['-stdlib=libc++']
+ 
++if platform.system() == 'Windows':
++    extra_compile_args = ['/Od', '/Zi', '/std:c++11', '/Wall']
++    extra_link_args = ['/DEBUG']
++
+ ext_modules = [
+     Extension(
+         'plyvel._plyvel',
+         sources=['plyvel/_plyvel.cpp', 'plyvel/comparator.cpp'],
+         libraries=['leveldb'],
+         extra_compile_args=extra_compile_args,
++        extra_link_args=extra_link_args,
+     )
+ ]
+ 

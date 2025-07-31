@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 3caf6009e4fc24fbf8712d3f5ef3da7e56495c26a488df2161218fc34e46019c
+  patches:
+    - 0001.patch  # [win]
 
 build:
   number: 0
@@ -22,13 +24,13 @@ requirements:
     - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - cython
+    - m2-patch  # [win]
   host:
     - pip
     - setuptools
     - wheel
     - python
     - leveldb {{ leveldb }}
-    - snappy ==1.1.9  # [win]
   run:
     - python
     - {{ pin_compatible('leveldb', max_pin='x.x') }}
@@ -46,7 +48,7 @@ test:
     - pytest -vv test                                   # [osx]
     # This test expects no permissions to /tmp dir, but linux instances run under root
     # on windows this results in crash
-    - pytest -vv test -k "not test_open_read_only_dir"  # [linux or win]
+    - pytest -vv test -k "not test_open_read_only_dir"  # [linux]
 
 about:
   home: https://github.com/wbolster/plyvel
