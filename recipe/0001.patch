@@ -12,7 +12,7 @@ index 68b7046..d681e54 100644
      extra_compile_args += ['-stdlib=libc++']
  
 +if platform.system() == 'Windows':
-+    extra_compile_args = ['/Od', '/Zi', '/std:c++11', '/Wall']
++    extra_compile_args = ['/Wall', '/Zi', '/std:c++11', '/Od', '/MD']
 +    extra_link_args = ['/DEBUG']
 +
  ext_modules = [
