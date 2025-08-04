@@ -21,7 +21,7 @@ requirements:
   build:
     - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
-    - cython
+    - cython >=0.17
   host:
     - pip
     - setuptools
